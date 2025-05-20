@@ -27,4 +27,12 @@ class WebTests {
     @Autowired
     MockMvc mockMvc;
 
+    @Test
+    void testPrixMoyen() throws Exception {
+        when(statistiqueImpl.prixMoyen()).thenReturn(new Echantillon(1,5000));
+        mockMvc.perform(get("/statistique")).andDo(print()).andExpect(status().isOk())
+                .andExpect(jsonPath("$.nombreDeVoitures").value(1))
+                .andExpect(jsonPath("$.prixMoyen").value(5000))
+                .andReturn();
+    }
 }
