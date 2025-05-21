@@ -5,6 +5,8 @@ import  org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.util.*;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 @SpringBootTest
 public class VoitureTest {
 
@@ -13,7 +15,7 @@ public class VoitureTest {
         Voiture v = new Voiture("BMW", 20000);
         Assert.isTrue(v.getMarque().equals("BMW"), "La marque doit être BMW");
         Assert.isTrue(v.getPrix() == 20000, "Le prix doit être 20000");
-    }
+}
     @Test
     void idVoiture() {
         Voiture v1 = new Voiture();
@@ -37,4 +39,17 @@ void testGetMarque() {
     String marque = voiture.getMarque(); // Appel explicite
     Assert.isTrue("Renault".equals(marque), "La méthode getMarque doit retourner la valeur définie");
 }
+
+    @Test
+    void testString() {
+        // Création d'une voiture avec des valeurs spécifiques
+        Voiture voiture = new Voiture("Tesla", 75000);
+        voiture.setId(1);
+
+        // Chaîne attendue correspondant à la méthode toString
+        String expected = "Car{marque='Tesla', prix=75000, id=1}";
+
+        // Vérification que toString retourne la chaîne attendue
+        assertEquals(expected, voiture.toString(), "La méthode toString ne génère pas la chaîne attendue");
+    }
 }
