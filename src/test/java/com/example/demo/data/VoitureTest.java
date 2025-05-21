@@ -12,7 +12,7 @@ public class VoitureTest {
     void creerVoiture(){
         Voiture v = new Voiture("BMW", 20000);
         Assert.isTrue(v.getMarque().equals("BMW"), "La marque doit être BMW");
-        Assert.isTrue(v.getPrix() == 20000, "Le prix doit être 20000");
+        Assert.isTrue(v.getPrix() == 20000, "Le prix doit être 20000 et pas autre");
     }
     @Test
     void idVoiture() {
