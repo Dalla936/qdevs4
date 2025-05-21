@@ -26,7 +26,7 @@ public class StatistiqueController {
         return "Bienvenue sur le site de statistiques";
     }
 
-    @PostMapping("/voiture")
+    @PostMapping(value = "/voiture")
     public void creerVoiture(@RequestBody Voiture voiture){
         statistique.ajouter(voiture);
     }
