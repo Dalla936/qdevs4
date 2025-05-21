@@ -1,6 +1,6 @@
-
 package com.example.demo.data;
 
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import  org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.util.*;
@@ -18,15 +18,23 @@ public class VoitureTest {
     void idVoiture() {
         Voiture v1 = new Voiture();
         v1.setId(10);
+        Assert.isTrue(v1.getId() == 10);
     }
     @Test
             void marqueVoiture(){
         Voiture v2 = new Voiture();
+        v2.setId(10);
         Assert.isTrue(v2.getId() == 10, "l'id est de 10");
         v2.setMarque("Renault");
         Assert.isTrue(v2.getMarque() == "Renault", "la marque doit être renault");
 
 
     }
-
+@Test
+void testGetMarque() {
+    Voiture voiture = new Voiture();
+    voiture.setMarque("Renault");
+    String marque = voiture.getMarque(); // Appel explicite
+    Assert.isTrue("Renault".equals(marque), "La méthode getMarque doit retourner la valeur définie");
+}
 }

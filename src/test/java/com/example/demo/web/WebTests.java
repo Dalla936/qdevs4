@@ -20,12 +20,29 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest
 @AutoConfigureMockMvc
 class WebTests {
-
-    @MockBean
+    @MockBean 
     StatistiqueImpl statistiqueImpl;
 
     @Autowired
     MockMvc mockMvc;
+
+
+    @Test
+    void ajouterVoiture() throws Exception {
+        mockMvc.perform(post("/voiture")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content("{ \"marque\": \"Ferrari\", \"prix\": 5000 }")
+                        .accept(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk());
+    }
+
+    @Test
+    void testPageAccueil() throws Exception {
+        mockMvc.perform(get("/"))
+                .andExpect(status().isOk())
+                .andExpect(content().string("Bienvenue sur le site de statistiques"));
+    }
+
 
     @Test
     void testPrixMoyen() throws Exception {
